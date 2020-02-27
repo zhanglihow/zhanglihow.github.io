@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Retrofit on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/retrofit/</link>
+    <description>Recent content in Retrofit on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Sat, 07 Jan 2017 16:45:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/retrofit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Retrofit的一些实例</title>
+      <link>https://zhanglihow.github.io/post/%E4%BD%BF%E7%94%A8retrofit%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%9E%E4%BE%8B/</link>
+      <pubDate>Sat, 07 Jan 2017 16:45:47 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E4%BD%BF%E7%94%A8retrofit%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%9E%E4%BE%8B/</guid>
+      <description>刚开始熟悉Retrofit ,并正在将项目中的网络框架换为retrofit。
+添加依赖：
+//Retrofit2所需要的包 compile &#39;com.squareup.retrofit2:retrofit:last_version&#39; //ConverterFactory的Gson依赖包 compile &#39;com.squareup.retrofit2:converter-gson:last_version&#39;  Retrofit的网络接口服务的包装类
+public class RetrofitWrapper { private static RetrofitWrapper retrofitWrapper; private Retrofit retrofit; private RetrofitWrapper() { retrofit = new Retrofit.Builder().baseUrl(AppConfig.RETROFIT_URL) .addConverterFactory(GsonConverterFactory.create()) .build(); } /** * 单列模式 */ public static RetrofitWrapper getWrapperInstance() { if (retrofitWrapper == null) { synchronized (RetrofitWrapper.class) { if (retrofitWrapper == null) { retrofitWrapper = new RetrofitWrapper(); } } } return retrofitWrapper; } public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { return retrofit.</description>
+    </item>
+    
+  </channel>
+</rss>

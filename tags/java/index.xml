@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/java/</link>
+    <description>Recent content in Java on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Fri, 17 Aug 2018 16:13:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>java.net.BindException Address already in use bind 错误</title>
+      <link>https://zhanglihow.github.io/post/java.net.bindexception-address-already-in-use-bind-%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Fri, 17 Aug 2018 16:13:00 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/java.net.bindexception-address-already-in-use-bind-%E9%94%99%E8%AF%AF/</guid>
+      <description>运行Java项目时，遇到了这个报错
+该错误是端口号被占用，查看你项目的端口号 application.properties —&amp;gt; server.port=8088
+然后控制栏输入 netstat -ano
+然后去任务管理器处，找到 pid=3216 的进程，kill它。
+重新运行你的项目，完成。</description>
+    </item>
+    
+    <item>
+      <title>栈和队列基础题</title>
+      <link>https://zhanglihow.github.io/post/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E5%9F%BA%E7%A1%80%E9%A2%98/</link>
+      <pubDate>Mon, 23 Jul 2018 18:31:23 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E5%9F%BA%E7%A1%80%E9%A2%98/</guid>
+      <description>1，设计一个有getMin功能的栈 题目：实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返回栈中的最小值 要求： 1，pop、push、getMin操作的时间复杂度都是O（1） 2，设计的栈类型可以使用现成的栈的结构 public class Stack1 { private Stack&amp;lt;Integer&amp;gt; stackMin; private Stack&amp;lt;Integer&amp;gt; stackData; public Stack1(){ stackMin=new Stack&amp;lt;&amp;gt;(); stackData=new Stack&amp;lt;&amp;gt;(); } public int getMin(){ if(stackMin.isEmpty()){ throw new RuntimeException(&amp;quot;stack is null&amp;quot;); } return stackMin.peek(); } //方案一 //节省空间，pop步骤多 public void push(int newNum){ if(stackMin.isEmpty()){ stackMin.push(newNum); }else{ if(getMin()&amp;lt;=newNum){ stackMin.push(newNum); } } stackData.push(newNum); } public int pop(){ if(stackData.isEmpty()){ throw new RuntimeException(&amp;quot;stack is null&amp;quot;); } int value=stackData.pop(); if(value==getMin()){ stackMin.pop(); } return value; } //-------------------------- //方案2 //比方案1多费空间，但省时间 public void push2(int newNum){ if(stackMin.</description>
+    </item>
+    
+    <item>
+      <title>Java 反射与 open-sdk 来使用 Android hide 方法</title>
+      <link>https://zhanglihow.github.io/post/java-%E5%8F%8D%E5%B0%84%E4%B8%8E-open-sdk-%E6%9D%A5%E4%BD%BF%E7%94%A8-android-hide-%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Sun, 08 Apr 2018 12:07:47 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/java-%E5%8F%8D%E5%B0%84%E4%B8%8E-open-sdk-%E6%9D%A5%E4%BD%BF%E7%94%A8-android-hide-%E6%96%B9%E6%B3%95/</guid>
+      <description>一直有个问题，就是清除非本APP 连接的wifi保存的密码，很想像Android系统那样可以直接在WIFI设置那里直接取消保存，于是做了以下尝试。
+是在sdk 19以上哦，19以下（包括）是可以直接清除的。
+清除wifi密码比较通常的用法是：
+WifiManager mWifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE); mWifiManager.removeNetwork(config.networkId); mWifiManager.saveConfiguration();  这样可以清除掉本来是你这个APP连接的WIFI，意思是这个WIFI是别人连接上的你是不能清除掉的。
+目前也没有看到其他三方App能够做到这样。
+于是开始寻找其他方法。
+然后看到了 WifiManager 的这个方法 froget（看起来好像很有希望哦）:
+说的是替代 removeNetwork 和 saveConfiguration 方法，可是这是hide的，我们显式是调用不了的。
+那先试试反射吧。 首先去拿到WifiManager：
+ Class&amp;lt;?&amp;gt; clazz = null; try { clazz = Class.forName(&amp;quot;android.net.wifi.WifiManager&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); }  然后构造forget方法：
+ Class&amp;lt;?&amp;gt; actionListener = null; try { actionListener = Class.forName(&amp;quot;android.net.wifi.WifiManager$ActionListener&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); } KLog.e(&amp;quot;actionListener:&amp;quot; + actionListener); Method method = null; try { method = clazz.</description>
+    </item>
+    
+  </channel>
+</rss>

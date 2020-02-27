@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flutter on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/flutter/</link>
+    <description>Recent content in Flutter on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 06 Jun 2018 15:12:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Flutter--使用 Server酱 推送微信消息给个人</title>
+      <link>https://zhanglihow.github.io/post/flutter-%E4%BD%BF%E7%94%A8-server%E9%85%B1-%E6%8E%A8%E9%80%81%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E7%BB%99%E4%B8%AA%E4%BA%BA/</link>
+      <pubDate>Wed, 06 Jun 2018 15:12:45 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/flutter-%E4%BD%BF%E7%94%A8-server%E9%85%B1-%E6%8E%A8%E9%80%81%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E7%BB%99%E4%B8%AA%E4%BA%BA/</guid>
+      <description>server酱：http://sc.ftqq.com/3.version
+Server酱 设计的非常简单，你只需要用 Github 账号登录，然后绑定微信同时关注公众号，就可以通过 Http 服务，向绑定的微信号发送通知消息。
+发送消息只需要向以下URL发一个GET或者POST请求：
+https://sc.ftqq.com/[SCKEY].send  接受两个参数：
+text：消息标题，最长为256，必填。
+desp：消息内容，最长64Kb，可空，支持MarkDown。
+之前想基于 Haven  ，做一个在家发现异常然后给我发通知的一个Demo，苦于邮件发送太麻烦，于是搁置了。但现在看来使用这个好像很不错。
+于是用Flutter写了这样一个Demo，就当熟悉下Flutter吧。
+使用到了 Flutter 的 Url跳转，Http请求，数据本地持久化SharedPreferences，及一些基础控件。
+代码：https://github.com/zhanglihow/serverchan_flutter_demo
+​
+​
+参考：
+Flutter交互控件 Flutter 网络操作 Flutter 本地存储</description>
+    </item>
+    
+    <item>
+      <title>打开Flutter的Demo flutter_gallery失败</title>
+      <link>https://zhanglihow.github.io/post/%E6%89%93%E5%BC%80flutter%E7%9A%84demo-flutter_gallery%E5%A4%B1%E8%B4%A5/</link>
+      <pubDate>Mon, 26 Mar 2018 17:29:33 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E6%89%93%E5%BC%80flutter%E7%9A%84demo-flutter_gallery%E5%A4%B1%E8%B4%A5/</guid>
+      <description>如果是git 一直超时，那么科学上网后可解决，不能科学上网的就看下面。
+找到目录下的 pubspec.yaml：
+将 git 替换为这个
+url: https://github.com/zhanglihow/gallery-assets ref: d318485f208376e06d7e330d9f191141d14722b8  像这样：
+然后点击右上角的 packges get
+运行成功</description>
+    </item>
+    
+    <item>
+      <title>Flutter之搜索电影</title>
+      <link>https://zhanglihow.github.io/post/flutter%E4%B9%8B%E6%90%9C%E7%B4%A2%E7%94%B5%E5%BD%B1/</link>
+      <pubDate>Wed, 21 Mar 2018 18:27:57 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/flutter%E4%B9%8B%E6%90%9C%E7%B4%A2%E7%94%B5%E5%BD%B1/</guid>
+      <description>搜索使用的是豆瓣电影API https://developers.douban.com/wiki/?title=movie_v2#subject
+效果 ​
+代码：
+https://github.com/zhanglihow/search_movie
+参考：
+https://github.com/Norbert515/BookSearch https://github.com/WuXiaolong/flutter_movie</description>
+    </item>
+    
+  </channel>
+</rss>

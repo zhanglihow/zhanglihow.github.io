@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Zip压缩和解压的方法</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="首先是一个 ZipControl 的zip工具类
+import java.io.File; import java.io.FileInputStream; import java.io.FileOutputStream; import java.io.InputStream; import java.util.ArrayList; import java.util.List; import java.util.zip.ZipEntry; import java.util.zip.ZipFile; import java.util.zip.ZipInputStream; import java.util.zip.ZipOutputStream; /** * Created by zhangli * * @time 2017/8/23 */ public class ZipControl{ /** * 压缩文件和文件夹 * @param srcFileString 要压缩的文件或文件夹 * @param zipFileString 解压完成的Zip路径 * @throws Exception */ public static void ZipFolder(String srcFileString, String zipFileString)throws Exception { //创建ZIP ZipOutputStream outZip = new ZipOutputStream(new FileOutputStream(zipFileString)); //创建文件 File file = new File(srcFileString); //压缩 ZipFiles(file.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Zip压缩和解压的方法">
+    <meta name="twitter:description" content="首先是一个 ZipControl 的zip工具类
+import java.io.File; import java.io.FileInputStream; import java.io.FileOutputStream; import java.io.InputStream; import java.util.ArrayList; import java.util.List; import java.util.zip.ZipEntry; import java.util.zip.ZipFile; import java.util.zip.ZipInputStream; import java.util.zip.ZipOutputStream; /** * Created by zhangli * * @time 2017/8/23 */ public class ZipControl{ /** * 压缩文件和文件夹 * @param srcFileString 要压缩的文件或文件夹 * @param zipFileString 解压完成的Zip路径 * @throws Exception */ public static void ZipFolder(String srcFileString, String zipFileString)throws Exception { //创建ZIP ZipOutputStream outZip = new ZipOutputStream(new FileOutputStream(zipFileString)); //创建文件 File file = new File(srcFileString); //压缩 ZipFiles(file.">
+    <meta name="twitter:image" content="/img/avatar_icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Zip压缩和解压的方法">
+  <meta property="og:description" content="首先是一个 ZipControl 的zip工具类
+import java.io.File; import java.io.FileInputStream; import java.io.FileOutputStream; import java.io.InputStream; import java.util.ArrayList; import java.util.List; import java.util.zip.ZipEntry; import java.util.zip.ZipFile; import java.util.zip.ZipInputStream; import java.util.zip.ZipOutputStream; /** * Created by zhangli * * @time 2017/8/23 */ public class ZipControl{ /** * 压缩文件和文件夹 * @param srcFileString 要压缩的文件或文件夹 * @param zipFileString 解压完成的Zip路径 * @throws Exception */ public static void ZipFolder(String srcFileString, String zipFileString)throws Exception { //创建ZIP ZipOutputStream outZip = new ZipOutputStream(new FileOutputStream(zipFileString)); //创建文件 File file = new File(srcFileString); //压缩 ZipFiles(file.">
+  <meta property="og:url" content="https://zhanglihow.github.io/post/zip%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%9A%84%E6%96%B9%E6%B3%95/">
+  <meta property="og:image" content="/img/avatar_icon.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.59.0">
+
+
+<link rel="canonical" href="https://zhanglihow.github.io/post/zip%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Zhangli&#39;s Blog">
+<meta name="msapplication-tooltip" content="Zhangli&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#5fbf5e">
+<meta name="msapplication-TileColor" content="#5fbf5e">
+<meta name="msapplication-TileImage" content="/images/tile-image-windows.png">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/images/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/images/touch-icon-apple.png">
+
+
+<link rel="preload" href="/styles/main.min.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/img/avatar_icon.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/avatar_icon.png" alt="Avatar">
+  
+  <h2 class="title">Zhangli&#39;s Blog</h2>
+  
+  <p class="subtitle">哟，写Bug呢！</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://zhangliblog.top/">首页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/tags/">标签</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%8f%8b%e9%93%be/">友链</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%85%b3%e4%ba%8e/">关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://blog.csdn.net/zhangli_">CSDN</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/404.html">404</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:zhanglihow@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhanglihow" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/img/we_code.jpg" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Zip压缩和解压的方法</h1>
+      <p class="post-meta">@zhangli · Jun 29, 2017 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>首先是一个 ZipControl 的zip工具类</p>
+
+<pre><code>import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
+
+/**
+ * Created by zhangli
+ *
+ * @time 2017/8/23
+ */
+
+public class ZipControl{
+
+
+    /**
+     * 压缩文件和文件夹
+     * @param srcFileString   要压缩的文件或文件夹
+     * @param zipFileString   解压完成的Zip路径
+     * @throws Exception
+     */
+    public static void ZipFolder(String srcFileString, String zipFileString)throws Exception {
+        //创建ZIP
+        ZipOutputStream outZip = new ZipOutputStream(new FileOutputStream(zipFileString));
+        //创建文件
+        File file = new File(srcFileString);
+        //压缩
+        ZipFiles(file.getParent()+File.separator, file.getName(), outZip);
+        //完成和关闭
+        outZip.finish();
+        outZip.close();
+    }
+
+    /**
+     * 压缩文件
+     * @param folderString
+     * @param fileString
+     * @param zipOutputSteam
+     * @throws Exception
+     */
+    private static void ZipFiles(String folderString, String fileString, ZipOutputStream zipOutputSteam)throws Exception{
+        if(zipOutputSteam == null)
+            return;
+        File file = new File(folderString+fileString);
+        if (file.isFile()) {
+            ZipEntry zipEntry =  new ZipEntry(fileString);
+            FileInputStream inputStream = new FileInputStream(file);
+            zipOutputSteam.putNextEntry(zipEntry);
+            int len;
+            byte[] buffer = new byte[4096];
+            while((len=inputStream.read(buffer)) != -1)
+            {
+                zipOutputSteam.write(buffer, 0, len);
+            }
+            zipOutputSteam.closeEntry();
+        } else {
+            //文件夹
+            String fileList[] = file.list();
+            //没有子文件和压缩
+            if (fileList.length &lt;= 0) {
+                ZipEntry zipEntry =  new ZipEntry(fileString+File.separator);
+                zipOutputSteam.putNextEntry(zipEntry);
+                zipOutputSteam.closeEntry();
+            }
+            //子文件和递归
+            for (int i = 0; i &lt; fileList.length; i++) {
+                ZipFiles(folderString, fileString+ File.separator+fileList[i], zipOutputSteam);
+            }
+        }
+    }
+
+
+    /**
+     * 返回zip的文件输入流
+     * @param zipFileString  zip的名称
+     * @param fileString     ZIP的文件名
+     * @return InputStream
+     * @throws Exception
+     */
+    public static InputStream UpZip(String zipFileString, String fileString)throws Exception {
+        ZipFile zipFile = new ZipFile(zipFileString);
+        ZipEntry zipEntry = zipFile.getEntry(fileString);
+        return zipFile.getInputStream(zipEntry);
+    }
+
+    /**
+     * 返回ZIP中的文件列表（文件和文件夹）
+     * @param zipFileString     ZIP的名称
+     * @param bContainFolder    是否包含文件夹
+     * @param bContainFile      是否包含文件
+     * @return
+     * @throws Exception
+     */
+    public static List&lt;File&gt; GetFileList(String zipFileString, boolean bContainFolder, boolean bContainFile)throws Exception {
+        List&lt;File&gt; fileList = new ArrayList&lt;File&gt;();
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
+        ZipEntry zipEntry;
+        String szName = &quot;&quot;;
+        while ((zipEntry = inZip.getNextEntry()) != null) {
+            szName = zipEntry.getName();
+            if (zipEntry.isDirectory()) {
+                // 获取部件的文件夹名
+                szName = szName.substring(0, szName.length() - 1);
+                File folder = new File(szName);
+                if (bContainFolder) {
+                    fileList.add(folder);
+                }
+            } else {
+                File file = new File(szName);
+                if (bContainFile) {
+                    fileList.add(file);
+                }
+            }
+        }
+        inZip.close();
+        return fileList;
+    }
+    
+    
+    /**
+     * 解压zip到指定的路径
+     * @param zipFileString  ZIP的名称
+     * @param outPathString   要解压缩路径
+     * @throws Exception
+     */
+    public static void UnZipFolder(String zipFileString, String outPathString) throws Exception {
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
+        ZipEntry zipEntry;
+        String  szName = &quot;&quot;;
+        while ((zipEntry = inZip.getNextEntry()) != null) {
+            szName = zipEntry.getName();
+            if (zipEntry.isDirectory()) {
+                //获取部件的文件夹名
+                szName = szName.substring(0, szName.length() - 1);
+                File folder = new File(outPathString + File.separator + szName);
+                folder.mkdirs();
+            } else {
+                File file = new File(outPathString + File.separator + szName);
+                if (!file.exists()){
+                    file.getParentFile().mkdirs();
+                    file.createNewFile();
+                }
+                // 获取文件的输出流
+                FileOutputStream out = new FileOutputStream(file);
+                int len;
+                byte[] buffer = new byte[1024];
+                // 读取（字节）字节到缓冲区
+                while ((len = inZip.read(buffer)) != -1) {
+                    // 从缓冲区（0）位置写入（字节）字节
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                out.close();
+            }
+        }
+        inZip.close();
+    }
+
+    public static void UnZipFolder(String zipFileString, String outPathString,String  szName) throws Exception {
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
+        ZipEntry zipEntry;
+        while ((zipEntry = inZip.getNextEntry()) != null) {
+            //szName = zipEntry.getName();
+            if (zipEntry.isDirectory()) {
+                //获取部件的文件夹名
+                szName = szName.substring(0, szName.length() - 1);
+                File folder = new File(outPathString + File.separator + szName);
+                folder.mkdirs();
+            } else {
+                File file = new File(outPathString + File.separator + szName);
+                if (!file.exists()){
+                    file.getParentFile().mkdirs();
+                    file.createNewFile();
+                }
+                // 获取文件的输出流
+                FileOutputStream out = new FileOutputStream(file);
+                int len;
+                byte[] buffer = new byte[1024];
+                // 读取（字节）字节到缓冲区
+                while ((len = inZip.read(buffer)) != -1) {
+                    // 从缓冲区（0）位置写入（字节）字节
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                out.close();
+            }
+        }
+        inZip.close();
+    }
+
+}
+</code></pre>
+
+<p>这里面就有 将文件夹完整压缩为一个包  和 解压包 的方法。<br />
+压缩：</p>
+
+<pre><code>ZipControl.ZipFolder(fileName, zipFile);
+fileName: 将要压缩的文件夹路径   如：SDCardHelper.getSDCardBaseDir()+&quot;/projectName/project1&quot;
+zipFile: 存储压缩包的路径（包括后缀名） 如：SDCardHelper.getSDCardBaseDir()+&quot;/zipFile/project1.zip&quot;
+</code></pre>
+
+<p>解压：</p>
+
+<pre><code>ZipControl.UnZipFolder(zipFile,fileName);
+与上面相似
+</code></pre>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/android"><span class="tag">Android</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>973</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+
+
+<footer class="site-footer">
+  <p>© 2017-2020 Zhangli&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

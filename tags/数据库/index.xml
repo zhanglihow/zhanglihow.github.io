@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Fri, 05 Jan 2018 15:17:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GreenDao数据库升级</title>
+      <link>https://zhanglihow.github.io/post/greendao%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8D%87%E7%BA%A7/</link>
+      <pubDate>Fri, 05 Jan 2018 15:17:22 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/greendao%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8D%87%E7%BA%A7/</guid>
+      <description>在将apk发包出去后需要改动Entity的元素，就需要升级数据库。
+这时看具体需求，一是不需要原有数据，清除数据库；二是需要保留原有数据。
+greendao默认使用的是第一种：
+Daomaster:
+ public static class DevOpenHelper extends OpenHelper { public DevOpenHelper(Context context, String name) { super(context, name); } public DevOpenHelper(Context context, String name, CursorFactory factory) { super(context, name, factory); } @Override public void onUpgrade(Database db, int oldVersion, int newVersion) { Log.i(&amp;quot;greenDAO&amp;quot;, &amp;quot;Upgrading schema from version &amp;quot; + oldVersion + &amp;quot; to &amp;quot; + newVersion + &amp;quot; by dropping all tables&amp;quot;); dropAllTables(db, true); onCreate(db); } }  这里只说第二种情况。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>调起百度、高德、腾讯地图导航功能</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="如果可以，先得到这3个条件，然后在调起地图的请求中传进去。
+使用这个方法判断手机中是否包含应用：
+ /** * 检查手机上是否安装了指定的软件 * * @param context * @param packageName：应用包名 * @return */ public static boolean isAvilible(Context context, String packageName) { //获取packagemanager final PackageManager packageManager = context.getPackageManager(); //获取所有已安装程序的包信息 List&amp;lt;PackageInfo&amp;gt; packageInfos = packageManager.getInstalledPackages(0); //用于存储所有已安装程序的包名 List&amp;lt;String&amp;gt; packageNames = new ArrayList&amp;lt;String&amp;gt;(); //从pinfo中将包名字逐一取出，压入pName list中 if (packageInfos != null) { for (int i = 0; i &amp;lt; packageInfos.size(); i&#43;&#43;) { String packName = packageInfos.get(i).packageName; packageNames.add(packName); } } //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE return packageNames.contains(packageName); }   //百度 if (isAvilible(getApplicationContext(), &amp;quot;com.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="调起百度、高德、腾讯地图导航功能">
+    <meta name="twitter:description" content="如果可以，先得到这3个条件，然后在调起地图的请求中传进去。
+使用这个方法判断手机中是否包含应用：
+ /** * 检查手机上是否安装了指定的软件 * * @param context * @param packageName：应用包名 * @return */ public static boolean isAvilible(Context context, String packageName) { //获取packagemanager final PackageManager packageManager = context.getPackageManager(); //获取所有已安装程序的包信息 List&amp;lt;PackageInfo&amp;gt; packageInfos = packageManager.getInstalledPackages(0); //用于存储所有已安装程序的包名 List&amp;lt;String&amp;gt; packageNames = new ArrayList&amp;lt;String&amp;gt;(); //从pinfo中将包名字逐一取出，压入pName list中 if (packageInfos != null) { for (int i = 0; i &amp;lt; packageInfos.size(); i&#43;&#43;) { String packName = packageInfos.get(i).packageName; packageNames.add(packName); } } //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE return packageNames.contains(packageName); }   //百度 if (isAvilible(getApplicationContext(), &amp;quot;com.">
+    <meta name="twitter:image" content="/img/avatar_icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="调起百度、高德、腾讯地图导航功能">
+  <meta property="og:description" content="如果可以，先得到这3个条件，然后在调起地图的请求中传进去。
+使用这个方法判断手机中是否包含应用：
+ /** * 检查手机上是否安装了指定的软件 * * @param context * @param packageName：应用包名 * @return */ public static boolean isAvilible(Context context, String packageName) { //获取packagemanager final PackageManager packageManager = context.getPackageManager(); //获取所有已安装程序的包信息 List&amp;lt;PackageInfo&amp;gt; packageInfos = packageManager.getInstalledPackages(0); //用于存储所有已安装程序的包名 List&amp;lt;String&amp;gt; packageNames = new ArrayList&amp;lt;String&amp;gt;(); //从pinfo中将包名字逐一取出，压入pName list中 if (packageInfos != null) { for (int i = 0; i &amp;lt; packageInfos.size(); i&#43;&#43;) { String packName = packageInfos.get(i).packageName; packageNames.add(packName); } } //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE return packageNames.contains(packageName); }   //百度 if (isAvilible(getApplicationContext(), &amp;quot;com.">
+  <meta property="og:url" content="https://zhanglihow.github.io/post/%E8%B0%83%E8%B5%B7%E7%99%BE%E5%BA%A6%E9%AB%98%E5%BE%B7%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%E5%AF%BC%E8%88%AA%E5%8A%9F%E8%83%BD/">
+  <meta property="og:image" content="/img/avatar_icon.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.59.0">
+
+
+<link rel="canonical" href="https://zhanglihow.github.io/post/%E8%B0%83%E8%B5%B7%E7%99%BE%E5%BA%A6%E9%AB%98%E5%BE%B7%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%E5%AF%BC%E8%88%AA%E5%8A%9F%E8%83%BD/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Zhangli&#39;s Blog">
+<meta name="msapplication-tooltip" content="Zhangli&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#5fbf5e">
+<meta name="msapplication-TileColor" content="#5fbf5e">
+<meta name="msapplication-TileImage" content="/images/tile-image-windows.png">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/images/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/images/touch-icon-apple.png">
+
+
+<link rel="preload" href="/styles/main.min.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/img/avatar_icon.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/avatar_icon.png" alt="Avatar">
+  
+  <h2 class="title">Zhangli&#39;s Blog</h2>
+  
+  <p class="subtitle">哟，写Bug呢！</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://zhangliblog.top/">首页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/tags/">标签</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%8f%8b%e9%93%be/">友链</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%85%b3%e4%ba%8e/">关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://blog.csdn.net/zhangli_">CSDN</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/404.html">404</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:zhanglihow@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhanglihow" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/img/we_code.jpg" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">调起百度、高德、腾讯地图导航功能</h1>
+      <p class="post-meta">@zhangli · Dec 28, 2016 · 2 min read</p>
+    </header>
+    <article class="post-content"><p><img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/20161228140409159.png?raw=true" alt="avatar" /></p>
+
+<p>如果可以，先得到这3个条件，然后在调起地图的请求中传进去。</p>
+
+<p>使用这个方法判断手机中是否包含应用：</p>
+
+<pre><code>    /**
+     * 检查手机上是否安装了指定的软件
+     *
+     * @param context
+     * @param packageName：应用包名
+     * @return
+     */
+    public static boolean isAvilible(Context context, String packageName) {
+        //获取packagemanager
+        final PackageManager packageManager = context.getPackageManager();
+        //获取所有已安装程序的包信息
+        List&lt;PackageInfo&gt; packageInfos = packageManager.getInstalledPackages(0);
+        //用于存储所有已安装程序的包名
+        List&lt;String&gt; packageNames = new ArrayList&lt;String&gt;();
+        //从pinfo中将包名字逐一取出，压入pName list中
+        if (packageInfos != null) {
+            for (int i = 0; i &lt; packageInfos.size(); i++) {
+                String packName = packageInfos.get(i).packageName;
+                packageNames.add(packName);
+            }
+        }
+        //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE
+        return packageNames.contains(packageName);
+    }
+</code></pre>
+
+<pre><code>        //百度
+        if (isAvilible(getApplicationContext(), &quot;com.baidu.BaiduMap&quot;)) {
+            baiduHave = true;
+        }
+        //高德
+        if (isAvilible(getApplicationContext(), &quot;com.autonavi.minimap&quot;)) {
+            gaodeHave = true;
+        }
+        //腾讯
+        if (isAvilible(getApplicationContext(), &quot;com.tencent.map&quot;)) {
+            tentcentHave = true;
+        }
+</code></pre>
+
+<p><img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/20161228140736285.png?raw=true" alt="这里写图片描述" /></p>
+
+<p>百度：
+1、已安装：</p>
+
+<pre><code>    /**
+     * 调起百度地图
+     *
+     * @param chufa 出发地
+     * @param mudi  目的地
+     * @param city  城市
+     */
+    public void intentMap(String chufa, String mudi, String city) {
+        try {
+            Intent intent = Intent.getIntent(
+                    &quot;intent://map/direction?origin=&quot; + chufa + &quot;&amp;destination=&quot; + mudi + &quot;&amp;mode=driving&amp;region=&quot; + city + &quot;&amp;referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end&quot;);
+            startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            MyToast.makeTextAnim(getApplication(), &quot;路径解析错误&quot;, 0, R.style.Lite_Animation_Toast).show();
+        } catch (BaiduMapAppNotSupportNaviException e) {
+            e.printStackTrace();
+            showDialog();
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+            showDialog();
+        }
+    }
+</code></pre>
+
+<p>2、未安装（通过浏览器调起）</p>
+
+<pre><code>String uristr = &quot;http://api.map.baidu.com/direction?origin=latlng:0,0|name:&quot;+chufaText+&quot;&amp;destination=&quot;+distinationText+&quot;&amp;mode=driving&amp;region=&quot;+originText+&quot;&amp;output=html&amp;src=APP名称&quot;;
+Uri uri = Uri.parse(uristr);
+Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+startActivity(intent);
+</code></pre>
+
+<p>高德：
+1、已安装</p>
+
+<pre><code>    /**
+     * 高德
+     * @param chufa  出发地
+     * @param mudi 目的地
+     */
+    public void initGaoDeMap(String chufa, String mudi) {
+        Intent intent;
+        try {
+            intent = Intent.getIntent(&quot;androidamap://navi?sourceApplication=&quot; + chufa + &quot;&amp;poiname=&quot; + mudi + &quot;&amp;lat=&quot; + 0 + &quot;&amp;lon=&quot; + 0 + &quot;&amp;dev=0&quot;);
+            startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+</code></pre>
+
+<p>2、未安装</p>
+
+<pre><code>Uri uri = Uri.parse(&quot;http://mo.amap.com/navi?start=&amp;dest=&quot; + 0 + &quot;&amp;destName=&quot; + distinationText + &quot;&amp;key=&quot;);
+Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+startActivity(intent);
+</code></pre>
+
+<p>腾讯  已安装和未安装都是这样</p>
+
+<pre><code>Uri uri = Uri.parse(&quot;http://apis.map.qq.com/uri/v1/routeplan?type=drive&amp;from=&quot; + chufaText + &quot;&amp;to=&quot; + distinationText + &quot;&amp;policy=0&amp;referer=myapp&quot;);
+Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+startActivity(intent);
+</code></pre>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/android"><span class="tag">Android</span></a></li>
+        
+          <li><a href="/tags/%E5%9C%B0%E5%9B%BE"><span class="tag">地图</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>1156</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+
+
+<footer class="site-footer">
+  <p>© 2017-2020 Zhangli&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

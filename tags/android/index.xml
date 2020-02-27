@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/android/</link>
+    <description>Recent content in Android on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Fri, 14 Sep 2018 17:55:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>监听到局域网内的设备信息</title>
+      <link>https://zhanglihow.github.io/post/%E7%9B%91%E5%90%AC%E5%88%B0%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E7%9A%84%E8%AE%BE%E5%A4%87%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Fri, 14 Sep 2018 17:55:05 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E7%9B%91%E5%90%AC%E5%88%B0%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E7%9A%84%E8%AE%BE%E5%A4%87%E4%BF%A1%E6%81%AF/</guid>
+      <description>项目上有个需要实现的功能，
+涉及到几个设备：路由器，全景相机，手机。
+路由器发出WIFI供全景相机和手机连接，手机需要拿到全景相机的IP去控制全景相机。
+路由器是华为的，有个它自己的App，抓包发现了路由器下连接上的设备信息。
+但是华为加密是比较严格的，请求时App端会生成一个密钥供服务端验证，除非华为将这个工具发给我，不然是行不通的，不用想华为也不会告诉我。
+还好Google已经有这个功能的一套方案了 https://developer.android.com/training/connect-devices-wirelessly/nsd
+试验了2K多次的开关监听，没有一次错误，还是很稳定的。
+代码很简单，demo地址：https://github.com/zhanglihow/GetWifiIpDemo</description>
+    </item>
+    
+    <item>
+      <title>仿知乎广告效果</title>
+      <link>https://zhanglihow.github.io/post/%E4%BB%BF%E7%9F%A5%E4%B9%8E%E5%B9%BF%E5%91%8A%E6%95%88%E6%9E%9C/</link>
+      <pubDate>Tue, 14 Aug 2018 10:13:27 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E4%BB%BF%E7%9F%A5%E4%B9%8E%E5%B9%BF%E5%91%8A%E6%95%88%E6%9E%9C/</guid>
+      <description>先放一张知乎的广告截图：
+说下我的实现吧，主要利用RecyclerView，在需要出现广告的时候，将这个item透明化，显示 ImageView 就达到这种效果了。最主要是这个RecyclerView的分隔条，用了个三方的才最终达到理想的效果。
+可能还是会和原知乎有点不一样，图片广告完全没动，所以这只是好奇实现了一下。
+demo地址：https://github.com/zhanglihow/ZhihuRecycler
+在网上看到hongyang的实现，自定义了个IamgeView,比较接近了一些。https://github.com/hongyangAndroid/demo_rvadimage</description>
+    </item>
+    
+    <item>
+      <title>获得当前手机的内存状态</title>
+      <link>https://zhanglihow.github.io/post/%E8%8E%B7%E5%BE%97%E5%BD%93%E5%89%8D%E6%89%8B%E6%9C%BA%E7%9A%84%E5%86%85%E5%AD%98%E7%8A%B6%E6%80%81/</link>
+      <pubDate>Mon, 16 Oct 2017 16:58:50 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E8%8E%B7%E5%BE%97%E5%BD%93%E5%89%8D%E6%89%8B%E6%9C%BA%E7%9A%84%E5%86%85%E5%AD%98%E7%8A%B6%E6%80%81/</guid>
+      <description>ActivityManager mActivityManager = (ActivityManager)mApplication.getSystemService(ACTIVITY_SERVICE); int memory = mActivityManager.getMemoryClass(); float totalMemory = (float) (Runtime.getRuntime().totalMemory() * 1.0/ (1024 * 1024)); float freeMemory = (float) (Runtime.getRuntime().freeMemory() * 1.0/ (1024 * 1024)); Log.e(&amp;quot;内存&amp;quot;,&amp;quot;最大分配内存：&amp;quot;+memory+&amp;quot; 当前分配的总内存：&amp;quot;+totalMemory+&amp;quot; 剩余内存：&amp;quot;+freeMemory);  </description>
+    </item>
+    
+    <item>
+      <title>读取点云.OBJ文件，画出顶点平面图</title>
+      <link>https://zhanglihow.github.io/post/%E8%AF%BB%E5%8F%96%E7%82%B9%E4%BA%91.obj%E6%96%87%E4%BB%B6%E7%94%BB%E5%87%BA%E9%A1%B6%E7%82%B9%E5%B9%B3%E9%9D%A2%E5%9B%BE/</link>
+      <pubDate>Wed, 16 Aug 2017 14:52:20 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E8%AF%BB%E5%8F%96%E7%82%B9%E4%BA%91.obj%E6%96%87%E4%BB%B6%E7%94%BB%E5%87%BA%E9%A1%B6%E7%82%B9%E5%B9%B3%E9%9D%A2%E5%9B%BE/</guid>
+      <description>基于一款开源应用 Rtabmap https://github.com/introlab/rtabmap
+是基于 Google 的 Tango 手机使用的
+通过摄像头和红外摄像头扫描立体空间，并实时显示在手机上，扫描后可保存所扫描的点云数据， .ply文件或.ob文件。
+下图是扫描中截得图
+3D Builder软件打开 .obj 文件是这样（和上图不是一个文件）
+Android studio 打开 .obj 文件如下图
+我这里只需要平面图 就是v顶点 其余的不需要
+下面开始：
+首先是读取.obj文件 文件在手机内
+ public void startRead(final String uri) { mRootView.showLoading(); new Thread(new Runnable() { @Override public void run() { KLog.e(&amp;quot;start read&amp;quot;); long start = System.currentTimeMillis(); getObjXy(uri); long end = System.currentTimeMillis(); KLog.e(&amp;quot;用时：&amp;quot; + ((end - start) / 1000) + &amp;quot; s&amp;quot;); //画点 drawpoint(); } }).start(); }   /** * 读取 obj 的 xy点 * * @param uri */ private void getObjXy(String uri) { String fileStr = uri.</description>
+    </item>
+    
+    <item>
+      <title>Zip压缩和解压的方法</title>
+      <link>https://zhanglihow.github.io/post/zip%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 29 Jun 2017 11:30:40 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/zip%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+      <description>首先是一个 ZipControl 的zip工具类
+import java.io.File; import java.io.FileInputStream; import java.io.FileOutputStream; import java.io.InputStream; import java.util.ArrayList; import java.util.List; import java.util.zip.ZipEntry; import java.util.zip.ZipFile; import java.util.zip.ZipInputStream; import java.util.zip.ZipOutputStream; /** * Created by zhangli * * @time 2017/8/23 */ public class ZipControl{ /** * 压缩文件和文件夹 * @param srcFileString 要压缩的文件或文件夹 * @param zipFileString 解压完成的Zip路径 * @throws Exception */ public static void ZipFolder(String srcFileString, String zipFileString)throws Exception { //创建ZIP ZipOutputStream outZip = new ZipOutputStream(new FileOutputStream(zipFileString)); //创建文件 File file = new File(srcFileString); //压缩 ZipFiles(file.</description>
+    </item>
+    
+    <item>
+      <title>添加或删除RecyclerView的item后</title>
+      <link>https://zhanglihow.github.io/post/%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0recyclerview%E7%9A%84item/</link>
+      <pubDate>Thu, 13 Apr 2017 10:12:47 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0recyclerview%E7%9A%84item/</guid>
+      <description>通常Recycler给Adapter赋上数据源的时候利用：
+adapter.notifyDataSetChanged();  这样一般是在初始化界面 从网络获取到数据后 直接赋给adapter的写法。
+然后再动态的增加条目，又希望带有动画效果，可以这么写：
+adapter.notifyItemRangeInserted(int positionStart, int itemCount);  嗯，在RecyclerView中 数据给加上去了 并且有一个动画效果。
+但是，注意Adapter 中，这个数据源并没有增加。
+这时，就要用到 notifyDataSetChanged() 这个方法了
+在 调用加入的方法后 再调用全部刷新的方法。我的写法是这样的：
+adapter.notifyItemRangeInserted(int positionStart, int itemCount); new Handler().postDelayed(new Runnable() { @Override public void run() { adapter.notifyDataSetChanged(); } },400);  利用Handler延时400ms 刷新 这样写是因为加入时的动画效果有那么一小段时间，如果不延时直接刷新的话动画会卡顿，不信可以去试试。
+删除也是同理。</description>
+    </item>
+    
+    <item>
+      <title>调起百度、高德、腾讯地图导航功能</title>
+      <link>https://zhanglihow.github.io/post/%E8%B0%83%E8%B5%B7%E7%99%BE%E5%BA%A6%E9%AB%98%E5%BE%B7%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%E5%AF%BC%E8%88%AA%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Wed, 28 Dec 2016 14:16:27 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E8%B0%83%E8%B5%B7%E7%99%BE%E5%BA%A6%E9%AB%98%E5%BE%B7%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%E5%AF%BC%E8%88%AA%E5%8A%9F%E8%83%BD/</guid>
+      <description>如果可以，先得到这3个条件，然后在调起地图的请求中传进去。
+使用这个方法判断手机中是否包含应用：
+ /** * 检查手机上是否安装了指定的软件 * * @param context * @param packageName：应用包名 * @return */ public static boolean isAvilible(Context context, String packageName) { //获取packagemanager final PackageManager packageManager = context.getPackageManager(); //获取所有已安装程序的包信息 List&amp;lt;PackageInfo&amp;gt; packageInfos = packageManager.getInstalledPackages(0); //用于存储所有已安装程序的包名 List&amp;lt;String&amp;gt; packageNames = new ArrayList&amp;lt;String&amp;gt;(); //从pinfo中将包名字逐一取出，压入pName list中 if (packageInfos != null) { for (int i = 0; i &amp;lt; packageInfos.size(); i++) { String packName = packageInfos.get(i).packageName; packageNames.add(packName); } } //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE return packageNames.contains(packageName); }   //百度 if (isAvilible(getApplicationContext(), &amp;quot;com.</description>
+    </item>
+    
+    <item>
+      <title>怎样使用SharedPrefences来存储对象</title>
+      <link>https://zhanglihow.github.io/post/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8sharedprefences%E6%9D%A5%E5%AD%98%E5%82%A8%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Tue, 06 Dec 2016 17:56:22 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8sharedprefences%E6%9D%A5%E5%AD%98%E5%82%A8%E5%AF%B9%E8%B1%A1/</guid>
+      <description>一般使用sp存储的都是基本类型的数据，但遇到需要存储整个对象的时候，分开存储是可以的，但是很麻烦，也会记不清楚。
+那么可以使用将对象序列化成一个String数据类型存储在sp里，需要这个对象数据的时候在反序列化存储在sp的String数据，就得到了这个存储的对象。
+首先将需要存储的对象实现 Serializable或Parcelable ，表示这个对象是可序列化的。
+我这里存储User这个对象
+public class User implements Serializable{ private int id; private String name; public int getId() { return id; } public void setId(int id) { this.id = id; } public String getName() { return name; } public void setName(String name) { this.name = name; } }  第一步，saveobject：
+ saveObject(serialize(user),getApplicationContext(),USER);  第二步，取对象：
+deSerialization(getObject(getApplicationContext(),USER))  那么，User对象就被SharedPrefences存储到一个手机里。
+主要代码：
+ /** * 序列化对象 * * @param person * @return * @throws IOException */ public static String serialize(Object person) throws IOException { ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream); objectOutputStream.</description>
+    </item>
+    
+    <item>
+      <title>利用贝塞尔曲线做签名功能</title>
+      <link>https://zhanglihow.github.io/post/%E5%88%A9%E7%94%A8%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%81%9A%E7%AD%BE%E5%90%8D%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Sat, 06 Aug 2016 16:10:41 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E5%88%A9%E7%94%A8%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%81%9A%E7%AD%BE%E5%90%8D%E5%8A%9F%E8%83%BD/</guid>
+      <description>效果图： 开始在网上找的这个签名的功能，然后发觉画出来的线条不顺滑，之前偶然间看到贝塞尔曲线的一片博客，链接：http://blog.csdn.net/eclipsexys/article/details/51956908，然后将贝塞尔给添加进去，就完成了现在这种效果。
+主要代码： import android.app.AlertDialog; import android.app.Dialog; import android.content.Context; import android.graphics.Bitmap; import android.graphics.Canvas; import android.graphics.Color; import android.graphics.Paint; import android.graphics.Path; import android.graphics.Point; import android.os.Bundle; import android.os.Environment; import android.support.v7.app.AppCompatActivity; import android.view.Display; import android.view.LayoutInflater; import android.view.MotionEvent; import android.view.View; import android.view.ViewConfiguration; import android.view.WindowManager; import android.view.WindowManager.LayoutParams; import android.widget.Button; import android.widget.FrameLayout; import android.widget.ImageView; import android.widget.TextView; import java.io.ByteArrayOutputStream; import java.io.File; import java.io.FileOutputStream; import java.io.IOException; public class MainActivity extends AppCompatActivity implements View.OnClickListener { static final int BACKGROUND_COLOR = Color.</description>
+    </item>
+    
+  </channel>
+</rss>

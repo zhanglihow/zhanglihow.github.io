@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>使用Retrofit的一些实例</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="刚开始熟悉Retrofit ,并正在将项目中的网络框架换为retrofit。
+添加依赖：
+//Retrofit2所需要的包 compile &#39;com.squareup.retrofit2:retrofit:last_version&#39; //ConverterFactory的Gson依赖包 compile &#39;com.squareup.retrofit2:converter-gson:last_version&#39;  Retrofit的网络接口服务的包装类
+public class RetrofitWrapper { private static RetrofitWrapper retrofitWrapper; private Retrofit retrofit; private RetrofitWrapper() { retrofit = new Retrofit.Builder().baseUrl(AppConfig.RETROFIT_URL) .addConverterFactory(GsonConverterFactory.create()) .build(); } /** * 单列模式 */ public static RetrofitWrapper getWrapperInstance() { if (retrofitWrapper == null) { synchronized (RetrofitWrapper.class) { if (retrofitWrapper == null) { retrofitWrapper = new RetrofitWrapper(); } } } return retrofitWrapper; } public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { return retrofit.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="使用Retrofit的一些实例">
+    <meta name="twitter:description" content="刚开始熟悉Retrofit ,并正在将项目中的网络框架换为retrofit。
+添加依赖：
+//Retrofit2所需要的包 compile &#39;com.squareup.retrofit2:retrofit:last_version&#39; //ConverterFactory的Gson依赖包 compile &#39;com.squareup.retrofit2:converter-gson:last_version&#39;  Retrofit的网络接口服务的包装类
+public class RetrofitWrapper { private static RetrofitWrapper retrofitWrapper; private Retrofit retrofit; private RetrofitWrapper() { retrofit = new Retrofit.Builder().baseUrl(AppConfig.RETROFIT_URL) .addConverterFactory(GsonConverterFactory.create()) .build(); } /** * 单列模式 */ public static RetrofitWrapper getWrapperInstance() { if (retrofitWrapper == null) { synchronized (RetrofitWrapper.class) { if (retrofitWrapper == null) { retrofitWrapper = new RetrofitWrapper(); } } } return retrofitWrapper; } public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { return retrofit.">
+    <meta name="twitter:image" content="/img/avatar_icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="使用Retrofit的一些实例">
+  <meta property="og:description" content="刚开始熟悉Retrofit ,并正在将项目中的网络框架换为retrofit。
+添加依赖：
+//Retrofit2所需要的包 compile &#39;com.squareup.retrofit2:retrofit:last_version&#39; //ConverterFactory的Gson依赖包 compile &#39;com.squareup.retrofit2:converter-gson:last_version&#39;  Retrofit的网络接口服务的包装类
+public class RetrofitWrapper { private static RetrofitWrapper retrofitWrapper; private Retrofit retrofit; private RetrofitWrapper() { retrofit = new Retrofit.Builder().baseUrl(AppConfig.RETROFIT_URL) .addConverterFactory(GsonConverterFactory.create()) .build(); } /** * 单列模式 */ public static RetrofitWrapper getWrapperInstance() { if (retrofitWrapper == null) { synchronized (RetrofitWrapper.class) { if (retrofitWrapper == null) { retrofitWrapper = new RetrofitWrapper(); } } } return retrofitWrapper; } public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { return retrofit.">
+  <meta property="og:url" content="https://zhanglihow.github.io/post/%E4%BD%BF%E7%94%A8retrofit%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%9E%E4%BE%8B/">
+  <meta property="og:image" content="/img/avatar_icon.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.59.0">
+
+
+<link rel="canonical" href="https://zhanglihow.github.io/post/%E4%BD%BF%E7%94%A8retrofit%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%9E%E4%BE%8B/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Zhangli&#39;s Blog">
+<meta name="msapplication-tooltip" content="Zhangli&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#5fbf5e">
+<meta name="msapplication-TileColor" content="#5fbf5e">
+<meta name="msapplication-TileImage" content="/images/tile-image-windows.png">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/images/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/images/touch-icon-apple.png">
+
+
+<link rel="preload" href="/styles/main.min.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/img/avatar_icon.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/avatar_icon.png" alt="Avatar">
+  
+  <h2 class="title">Zhangli&#39;s Blog</h2>
+  
+  <p class="subtitle">哟，写Bug呢！</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://zhangliblog.top/">首页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/tags/">标签</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%8f%8b%e9%93%be/">友链</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%85%b3%e4%ba%8e/">关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://blog.csdn.net/zhangli_">CSDN</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/404.html">404</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:zhanglihow@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhanglihow" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/img/we_code.jpg" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">使用Retrofit的一些实例</h1>
+      <p class="post-meta">@zhangli · Jan 7, 2017 · 2 min read</p>
+    </header>
+    <article class="post-content"><p>刚开始熟悉Retrofit ,并正在将项目中的网络框架换为retrofit。</p>
+
+<p>添加依赖：</p>
+
+<pre><code>//Retrofit2所需要的包
+compile 'com.squareup.retrofit2:retrofit:last_version'
+//ConverterFactory的Gson依赖包
+compile 'com.squareup.retrofit2:converter-gson:last_version'
+</code></pre>
+
+<p>Retrofit的网络接口服务的包装类</p>
+
+<pre><code>public class RetrofitWrapper {
+    private static RetrofitWrapper retrofitWrapper;
+    private Retrofit retrofit;
+
+    private RetrofitWrapper() {
+        retrofit = new Retrofit.Builder().baseUrl(AppConfig.RETROFIT_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+    /**
+     * 单列模式
+     */
+    public static RetrofitWrapper getWrapperInstance() {
+        if (retrofitWrapper == null) {
+            synchronized (RetrofitWrapper.class) {
+                if (retrofitWrapper == null) {
+                    retrofitWrapper = new RetrofitWrapper();
+                }
+            }
+        }
+        return retrofitWrapper;
+    }
+
+    public &lt;T&gt; T create(final Class&lt;T&gt; service) {
+        return retrofit.create(service);
+    }
+}
+</code></pre>
+
+<p>定义接口：</p>
+
+<pre><code>public interface RetrofitApi {
+    /**
+     * 登录
+     */
+    @POST(&quot;servRoot&quot;)
+    Call&lt;LoginBean&gt; doLoginResult(@QueryMap Map&lt;String, String&gt; map);
+
+    }
+</code></pre>
+
+<p>通过 baseUrl(AppConfig.RETROFIT_URL)+@POST(“servRoot”)<br />
+拼接成完整的请求URL:”<a href="http://www.xxxx.cn/servRoot">http://www.xxxx.cn/servRoot</a>”</p>
+
+<p>发起请求的入口：</p>
+
+<pre><code>public class RetrofitModel {
+    private RetrofitApi retrofitApi;
+    private static RetrofitModel retrofitModel;
+
+    /**
+     * 单列模式
+     */
+    public static RetrofitModel getModelInstance() {
+        if (retrofitModel == null) {
+            retrofitModel = new RetrofitModel();
+        }
+        return retrofitModel;
+    }
+
+    private RetrofitModel(){
+        retrofitApi = RetrofitWrapper.getWrapperInstance().create(RetrofitApi.class);
+    }
+
+    /**
+     * 登录
+     */
+    public Call&lt;LoginBean&gt; login(Map&lt;String,String&gt; map) {
+        Call&lt;LoginBean&gt; loginCall = retrofitApi.doLoginResult(map);
+        return loginCall;
+    }
+ }
+</code></pre>
+
+<p>发起登录的请求：</p>
+
+<pre><code>    private RetrofitModel retrofitModel;
+
+	retrofitModel = RetrofitModel.getModelInstance();
+
+    /**
+     * 使用retrofit登录
+     */
+    public void retrofitLogin() {
+        Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+        map.put(&quot;user_name&quot;, username);
+        map.put(&quot;user_pwd&quot;, userpass);
+        map.put(&quot;className&quot;, &quot;com.ycya.service.UserInfoService&quot;);
+        map.put(&quot;methodName&quot;, &quot;login&quot;);
+        //这里的泛型我已经知道了返回数据的结构 
+        //如果不知道的话  可以将泛型定义为：Call&lt;ResponseBody&gt;   
+        // 然后在请求成功后ResponseBody.body().string()  查看结构 来解析
+        Call&lt;LoginBean&gt; call = retrofitModel.login(map);
+        call.enqueue(new Callback&lt;LoginBean&gt;() {
+            @Override
+            public void onResponse(Call&lt;LoginBean&gt; call, Response&lt;LoginBean&gt; response) {
+                if (response.isSuccessful()) {
+	                //得到返回的泛型数据
+                    LoginBean loginBean = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call&lt;LoginBean&gt; call, Throwable t) {
+               
+            }
+        });
+    }
+</code></pre>
+
+<p>上传单张图片<br />
+参考了很多网上的方法  都传不上去  后台报空  后面找到了官方文档   拷贝实例代码  直接Ok<br />
+定义接口：</p>
+
+<p>RetrofitApi中：</p>
+
+<pre><code>    /**
+     * 事故上传现场图片
+     * 
+     * id  pathFile  这两个后台需要的
+     * 最后那个需要传的图片
+     */
+    @Multipart
+    @POST(&quot;imgupload&quot;)
+    Call&lt;ResponseBody&gt; uploadImg(@Part(&quot;id&quot;) RequestBody id,
+                                 @Part(&quot;pathFile&quot;) RequestBody pathFile,
+                                 @Part MultipartBody.Part img);
+</code></pre>
+
+<p>RetrofitModel中：</p>
+
+<pre><code>    /**
+     * 事故上传中的现场图片
+     */
+    public Call&lt;ResponseBody&gt; uploadImg(RequestBody id, RequestBody pathFile, MultipartBody.Part img){
+        Call&lt;ResponseBody&gt; call=retrofitApi.uploadImg(id,pathFile,img);
+        return call;
+    }
+</code></pre>
+
+<p>上传：</p>
+
+<pre><code>    /**
+     * 上传现场图片
+     */
+    public void uploadImg1(String path) {
+        //id
+        RequestBody id =RequestBody.create(MediaType.parse(&quot;multipart/form-data&quot;), &quot;0&quot;);
+        //pathFile
+        RequestBody pathFile =RequestBody.create(MediaType.parse(&quot;multipart/form-data&quot;), &quot;filestore/uploadimg&quot;);
+        //1、根据地址拿到File
+        File file = new File(path);
+        //2、创建RequestBody，其中`multipart/form-data`为编码类型
+        RequestBody requestFile = RequestBody.create(MediaType.parse(&quot;multipart/form-data&quot;), file);
+        //3、创建`MultipartBody.Part`，其中需要注意第一个参数`filename`需要与服务器对应,也就是`键`
+        MultipartBody.Part  part = MultipartBody.Part.createFormData(&quot;filename&quot;, file.getName(), requestFile);
+
+        Call&lt;ResponseBody&gt; call = retrofitModel.uploadImg(id,pathFile, part);
+        call.enqueue(new Callback&lt;ResponseBody&gt;(){
+            @Override
+            public void onResponse(Call&lt;ResponseBody&gt; call, Response&lt;ResponseBody&gt; response) {
+                if (response.isSuccessful()){
+                    try {
+                        KLog.e(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call&lt;ResponseBody&gt; call, Throwable t) {
+                KLog.e(&quot;onFailure&quot;);
+            }
+        });
+    }
+</code></pre>
+
+<p>还有其他的方法方式没试过，后面如果试了，ok的  会更上来。</p>
+
+<p>某个文档 （例子挺多）：<a href="https://futurestud.io/tutorials/retrofit-2-basics-of-api-description">https://futurestud.io/tutorials/retrofit-2-basics-of-api-description</a></p>
+
+<p>参考：<a href="http://blog.csdn.net/u011974987/article/details/50895633">http://blog.csdn.net/u011974987/article/details/50895633</a></p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/retrofit"><span class="tag">Retrofit</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>1146</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+
+
+<footer class="site-footer">
+  <p>© 2017-2020 Zhangli&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

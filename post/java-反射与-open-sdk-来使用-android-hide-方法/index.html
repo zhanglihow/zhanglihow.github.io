@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Java 反射与 open-sdk 来使用 Android hide 方法</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  <meta name="description" content="一直有个问题，就是清除非本APP 连接的wifi保存的密码，很想像Android系统那样可以直接在WIFI设置那里直接取消保存，于是做了以下尝试。
+是在sdk 19以上哦，19以下（包括）是可以直接清除的。
+清除wifi密码比较通常的用法是：
+WifiManager mWifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE); mWifiManager.removeNetwork(config.networkId); mWifiManager.saveConfiguration();  这样可以清除掉本来是你这个APP连接的WIFI，意思是这个WIFI是别人连接上的你是不能清除掉的。
+目前也没有看到其他三方App能够做到这样。
+于是开始寻找其他方法。
+然后看到了 WifiManager 的这个方法 froget（看起来好像很有希望哦）:
+说的是替代 removeNetwork 和 saveConfiguration 方法，可是这是hide的，我们显式是调用不了的。
+那先试试反射吧。 首先去拿到WifiManager：
+ Class&amp;lt;?&amp;gt; clazz = null; try { clazz = Class.forName(&amp;quot;android.net.wifi.WifiManager&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); }  然后构造forget方法：
+ Class&amp;lt;?&amp;gt; actionListener = null; try { actionListener = Class.forName(&amp;quot;android.net.wifi.WifiManager$ActionListener&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); } KLog.e(&amp;quot;actionListener:&amp;quot; &#43; actionListener); Method method = null; try { method = clazz.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Java 反射与 open-sdk 来使用 Android hide 方法">
+    <meta name="twitter:description" content="一直有个问题，就是清除非本APP 连接的wifi保存的密码，很想像Android系统那样可以直接在WIFI设置那里直接取消保存，于是做了以下尝试。
+是在sdk 19以上哦，19以下（包括）是可以直接清除的。
+清除wifi密码比较通常的用法是：
+WifiManager mWifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE); mWifiManager.removeNetwork(config.networkId); mWifiManager.saveConfiguration();  这样可以清除掉本来是你这个APP连接的WIFI，意思是这个WIFI是别人连接上的你是不能清除掉的。
+目前也没有看到其他三方App能够做到这样。
+于是开始寻找其他方法。
+然后看到了 WifiManager 的这个方法 froget（看起来好像很有希望哦）:
+说的是替代 removeNetwork 和 saveConfiguration 方法，可是这是hide的，我们显式是调用不了的。
+那先试试反射吧。 首先去拿到WifiManager：
+ Class&amp;lt;?&amp;gt; clazz = null; try { clazz = Class.forName(&amp;quot;android.net.wifi.WifiManager&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); }  然后构造forget方法：
+ Class&amp;lt;?&amp;gt; actionListener = null; try { actionListener = Class.forName(&amp;quot;android.net.wifi.WifiManager$ActionListener&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); } KLog.e(&amp;quot;actionListener:&amp;quot; &#43; actionListener); Method method = null; try { method = clazz.">
+    <meta name="twitter:image" content="/img/avatar_icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Java 反射与 open-sdk 来使用 Android hide 方法">
+  <meta property="og:description" content="一直有个问题，就是清除非本APP 连接的wifi保存的密码，很想像Android系统那样可以直接在WIFI设置那里直接取消保存，于是做了以下尝试。
+是在sdk 19以上哦，19以下（包括）是可以直接清除的。
+清除wifi密码比较通常的用法是：
+WifiManager mWifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE); mWifiManager.removeNetwork(config.networkId); mWifiManager.saveConfiguration();  这样可以清除掉本来是你这个APP连接的WIFI，意思是这个WIFI是别人连接上的你是不能清除掉的。
+目前也没有看到其他三方App能够做到这样。
+于是开始寻找其他方法。
+然后看到了 WifiManager 的这个方法 froget（看起来好像很有希望哦）:
+说的是替代 removeNetwork 和 saveConfiguration 方法，可是这是hide的，我们显式是调用不了的。
+那先试试反射吧。 首先去拿到WifiManager：
+ Class&amp;lt;?&amp;gt; clazz = null; try { clazz = Class.forName(&amp;quot;android.net.wifi.WifiManager&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); }  然后构造forget方法：
+ Class&amp;lt;?&amp;gt; actionListener = null; try { actionListener = Class.forName(&amp;quot;android.net.wifi.WifiManager$ActionListener&amp;quot;); } catch (ClassNotFoundException e) { e.printStackTrace(); KLog.e(e); } KLog.e(&amp;quot;actionListener:&amp;quot; &#43; actionListener); Method method = null; try { method = clazz.">
+  <meta property="og:url" content="https://zhanglihow.github.io/post/java-%E5%8F%8D%E5%B0%84%E4%B8%8E-open-sdk-%E6%9D%A5%E4%BD%BF%E7%94%A8-android-hide-%E6%96%B9%E6%B3%95/">
+  <meta property="og:image" content="/img/avatar_icon.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.59.0">
+
+
+<link rel="canonical" href="https://zhanglihow.github.io/post/java-%E5%8F%8D%E5%B0%84%E4%B8%8E-open-sdk-%E6%9D%A5%E4%BD%BF%E7%94%A8-android-hide-%E6%96%B9%E6%B3%95/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Zhangli&#39;s Blog">
+<meta name="msapplication-tooltip" content="Zhangli&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#5fbf5e">
+<meta name="msapplication-TileColor" content="#5fbf5e">
+<meta name="msapplication-TileImage" content="/images/tile-image-windows.png">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/images/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/images/touch-icon-apple.png">
+
+
+<link rel="preload" href="/styles/main.min.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/img/avatar_icon.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/avatar_icon.png" alt="Avatar">
+  
+  <h2 class="title">Zhangli&#39;s Blog</h2>
+  
+  <p class="subtitle">哟，写Bug呢！</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://zhangliblog.top/">首页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/tags/">标签</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%8f%8b%e9%93%be/">友链</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/%e5%85%b3%e4%ba%8e/">关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://blog.csdn.net/zhangli_">CSDN</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://zhangliblog.top/404.html">404</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:zhanglihow@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/zhanglihow" title="GitHub" aria-label="GitHub">
+            <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/img/we_code.jpg" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Java 反射与 open-sdk 来使用 Android hide 方法</h1>
+      <p class="post-meta">@zhangli · Apr 8, 2018 · 1 min read</p>
+    </header>
+    <article class="post-content">
+
+<p>一直有个问题，就是清除非本APP 连接的wifi保存的密码，很想像Android系统那样可以直接在WIFI设置那里直接取消保存，于是做了以下尝试。<br />
+<strong>是在sdk 19以上哦，19以下（包括）是可以直接清除的。</strong></p>
+
+<p>清除wifi密码比较通常的用法是：</p>
+
+<pre><code>WifiManager mWifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+mWifiManager.removeNetwork(config.networkId);
+mWifiManager.saveConfiguration();
+</code></pre>
+
+<p>这样可以清除掉本来是你这个APP连接的WIFI，意思是这个WIFI是别人连接上的你是不能清除掉的。<br />
+目前也没有看到其他三方App能够做到这样。</p>
+
+<p>于是开始寻找其他方法。<br />
+然后看到了 WifiManager 的这个方法 froget（看起来好像很有希望哦）:<br />
+<img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/%E5%8F%8D%E5%B0%841.png?raw=true" alt="这里写图片描述" />
+说的是替代 removeNetwork 和 saveConfiguration 方法，可是这是hide的，我们显式是调用不了的。</p>
+
+<h4 id="那先试试反射吧">那先试试反射吧。</h4>
+
+<p>首先去拿到WifiManager：</p>
+
+<pre><code>        Class&lt;?&gt; clazz = null;
+        try {
+            clazz = Class.forName(&quot;android.net.wifi.WifiManager&quot;);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            KLog.e(e);
+        }
+</code></pre>
+
+<p>然后构造forget方法：</p>
+
+<pre><code>        Class&lt;?&gt; actionListener = null;
+        try {
+            actionListener = Class.forName(&quot;android.net.wifi.WifiManager$ActionListener&quot;);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            KLog.e(e);
+        }
+        KLog.e(&quot;actionListener:&quot; + actionListener);
+
+        Method method = null;
+        try {
+            method = clazz.getMethod(&quot;forget&quot;, int.class, actionListener);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            KLog.e(e);
+        }
+</code></pre>
+
+<p>然后构造WifiManager的构造函数：</p>
+
+<pre><code>        Class&lt;?&gt; im = null;
+        try {
+            im = Class.forName(&quot;android.net.wifi.IWifiManager&quot;);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            KLog.e(e);
+        }
+        KLog.e(im);
+
+        Constructor[] constructor = clazz.getConstructors();
+        Object ob = null;
+        try {
+            ob = constructor[0].newInstance(context, im);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            KLog.e(e);
+        }
+</code></pre>
+
+<p>最后调用方法：</p>
+
+<pre><code> try {
+            method.invoke(ob, config.networkId, actionListener);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            KLog.e(e);
+        }
+</code></pre>
+
+<p><strong>But ！！</strong> 在构造类函数的时候，这个IwifiManager明明都拿到了，但是还是没有正确。<br />
+搞了好久还是没对，可能是我哪里弄错了？，暂时先换种方法吧。<br />
+<img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/%E5%8F%8D%E5%B0%842.png?raw=true" alt="这里写图片描述" /></p>
+
+<h4 id="现在试试open-sdk">现在试试open-sdk:</h4>
+
+<p>先去github clone  <a href="https://github.com/anggrayudi/android-hidden-api">https://github.com/anggrayudi/android-hidden-api</a><br />
+这是把设备上的 /system/framework/framework.jar 提取出来，经过一系列转换，最终得到完整的 android.jar。
+<img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/%E5%8F%8D%E5%B0%843.png?raw=true" alt="这里写图片描述" />
+找到项目对应的编译版本，我用的是26，拿到android.jar<br />
+<img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/%E5%8F%8D%E5%B0%844.png?raw=true" alt="这里写图片描述" />
+然后放到项目的libs下。</p>
+
+<p>在app 的build.gradle 下 dependencies：<br />
+<img src="https://github.com/zhanglihow/zhanglihow.github.io/blob/master/img/%E5%8F%8D%E5%B0%845.png?raw=true" alt="这里写图片描述" />
+这样的话就不会将open-sdk打包到apk中，只是编译时使用，最终代码还是运行在手机的framework.jar中，不会影响其他。</p>
+
+<p>在根目录下的 build.gradle下添加这个：</p>
+
+<pre><code>project('app'){
+    gradle.projectsEvaluated{
+        tasks.withType(JavaCompile){
+            // Xbootclasspath/p:是 Java 编译的寻址优先设置，先找缺省路径还是全路径
+            options.compilerArgs.add('-Xbootclasspath/p:app/libs/android.jar')
+        }
+    }
+}
+</code></pre>
+
+<p>编译后可直接调用 wifiManager.forget(netId,null)了，就算显示红色的也没关系，也是编译的通的。</p>
+
+<p>转折点来了~  你会发现还是不能清除掉通过其他应用设置的wifi。<br />
+比如手机设置密码连接wifi后，你再来操作清除，是无效的，还是只能清除掉自己App连接的。<br />
+如果哪位大神知道的一定要告诉我啊，感激不尽~</p>
+
+<p>不过以后再遇到类似hide的问题，就可以试下这两种方式啦。</p>
+
+<p>参考：<a href="https://www.jianshu.com/p/fbf45770ecc8">https://www.jianshu.com/p/fbf45770ecc8</a></p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/java"><span class="tag">Java</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>690</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+
+
+<footer class="site-footer">
+  <p>© 2017-2020 Zhangli&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

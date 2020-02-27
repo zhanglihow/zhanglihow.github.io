@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>简历 on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/%E7%AE%80%E5%8E%86/</link>
+    <description>Recent content in 简历 on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 20 Sep 1999 11:43:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/%E7%AE%80%E5%8E%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>演示</title>
+      <link>https://zhanglihow.github.io/post/%E6%BC%94%E7%A4%BA/</link>
+      <pubDate>Mon, 20 Sep 1999 11:43:49 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E6%BC%94%E7%A4%BA/</guid>
+      <description>1，添加站点 
+&amp;nbsp;
+&amp;nbsp;
+2，Tango扫描  &amp;nbsp;
+&amp;nbsp;
+3-1，Faro扫描App端  &amp;nbsp;
+&amp;nbsp;
+3-2，Faro机器  &amp;nbsp;
+&amp;nbsp;
+4，Theta拍照  &amp;nbsp;
+&amp;nbsp;</description>
+    </item>
+    
+  </channel>
+</rss>

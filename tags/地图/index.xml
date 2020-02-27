@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>地图 on Zhangli&#39;s Blog</title>
+    <link>https://zhanglihow.github.io/tags/%E5%9C%B0%E5%9B%BE/</link>
+    <description>Recent content in 地图 on Zhangli&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CH</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 28 Dec 2016 14:16:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhanglihow.github.io/tags/%E5%9C%B0%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>调起百度、高德、腾讯地图导航功能</title>
+      <link>https://zhanglihow.github.io/post/%E8%B0%83%E8%B5%B7%E7%99%BE%E5%BA%A6%E9%AB%98%E5%BE%B7%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%E5%AF%BC%E8%88%AA%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Wed, 28 Dec 2016 14:16:27 +0800</pubDate>
+      
+      <guid>https://zhanglihow.github.io/post/%E8%B0%83%E8%B5%B7%E7%99%BE%E5%BA%A6%E9%AB%98%E5%BE%B7%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%E5%AF%BC%E8%88%AA%E5%8A%9F%E8%83%BD/</guid>
+      <description>如果可以，先得到这3个条件，然后在调起地图的请求中传进去。
+使用这个方法判断手机中是否包含应用：
+ /** * 检查手机上是否安装了指定的软件 * * @param context * @param packageName：应用包名 * @return */ public static boolean isAvilible(Context context, String packageName) { //获取packagemanager final PackageManager packageManager = context.getPackageManager(); //获取所有已安装程序的包信息 List&amp;lt;PackageInfo&amp;gt; packageInfos = packageManager.getInstalledPackages(0); //用于存储所有已安装程序的包名 List&amp;lt;String&amp;gt; packageNames = new ArrayList&amp;lt;String&amp;gt;(); //从pinfo中将包名字逐一取出，压入pName list中 if (packageInfos != null) { for (int i = 0; i &amp;lt; packageInfos.size(); i++) { String packName = packageInfos.get(i).packageName; packageNames.add(packName); } } //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE return packageNames.contains(packageName); }   //百度 if (isAvilible(getApplicationContext(), &amp;quot;com.</description>
+    </item>
+    
+  </channel>
+</rss>
